@@ -1,6 +1,24 @@
 
 \documentclass[letterpaper,twocolumn,10pt]{article}
 \usepackage{usenix,epsfig,endnotes}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ifthen}
+\usepackage{enumerate}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{color}
+\usepackage[lofdepth,lotdepth]{subfig}
+\usepackage{tablefootnote}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{hyperref}
+
 \begin{document}
 
 %don't want date printed
@@ -33,7 +51,20 @@
 
 \section{Introduction and Problem Overview}
 
-The problem of factoring $p^2 q$ is of considerable interest in cryptography. Various encryption schemes, such as the EPOC cryptosystem~\cite{Okamoto}, are based on the assumption that this problem is hard to solve. A natural question to ask is whether factoring $p^2q$ is as hard as factoring a general RSA modulus $N = pq$. In particular, is there a way to exploit the fact that $N$ is of the form $p^2q$ that could lead to an improvement in factoring moduli of this form? 
+The problem of factoring $p^2 q$ is of considerable interest in cryptography. Various encryption schemes, such as the EPOC cryptosystem~\cite{Okamoto}, are based on the assumption that this problem is hard to solve. A natural question to ask is whether factoring $p^2q$ is as hard as factoring a general RSA modulus $N = pq$. In particular, is there a way to exploit the fact that $N$ is of the form $p^2q$ that could lead to an improvement in factoring moduli of this form? One observation is that given $N = p^2q$, it is easy to learn if $q$ is a quadratic residue modulo some prime $l$. To see this, we first note that the Jacobi symbol $\left(\frac{l}{N}\right)$ is computable in polynomial time via repeated application of the law of quadratic reciprocity. Additionally, since the Jacobi symbol is a multiplicative function, it follows that
+\[
+\left(\frac{l}{N}\right) = \left(\frac{l}{p^2q}\right) = \left(\frac{l}{p^2}\right) \left(\frac{l}{q}\right) = \left(\frac{l}{p}\right)^2 \left(\frac{l}{q}\right).
+\]
+
+Since $\text{gcd}(l,p) = 1$ (for $l \ne p$), it follows that the Legendre symbol $\left(\frac{l}{p}\right) = \pm 1$ and therefore
+\[
+\left(\frac{l}{N}\right) = \left(\frac{l}{q}\right).
+\]
+By the law of quadratic reciprocity, it follows that
+\[
+\left(\frac{l}{q}\right) \left(\frac{q}{l}\right) = (-1)^{\frac{l-1}{2} \frac{q-1}{2}}, 
+\]
+and so $\left(\frac{q}{l}\right)$ can be computed in polynomial time.
 
 \section{This is Another Section}
 
