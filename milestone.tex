@@ -66,8 +66,16 @@ By the law of quadratic reciprocity, it follows that
 \]
 and so $\left(\frac{q}{l}\right)$ can be computed in polynomial time.
 
-\section{This is Another Section}
+Using this information, we can construct tables $T_{l_i}$ for primes $l_i$ that list the possible values of $q \bmod l_i$. Since there are $\frac{l_i - 1}{2}$ quadratic residues and nonresidues modulo $l_i$, the size of $T_{l_i}$ will be $\frac{l_i - 1}{2}$. The question of factoring $p^2 q$ has now been reduced to the question of whether $q$ can be efficiently reconstructed given information about whether or not $q$ is a quadratic residue modulo primes for a fixed sequence of primes. 
 
+\section{One Approach}
+
+One approach to factoring $p^2 q$ is to attempt to construct a polynomial that must have $q$ as a small root and then determine this root using Coppersmith's method~\cite{Coppersmith}. Observe that for each prime $l_i$ for which we have a corresponding table $T_{l_i}$, we can construct the polynomial
+\[
+f_{l_i}(x) = \prod_{a \in T_{l_i}} (x - a) \bmod l_i.
+\]
+
+Then, using the Chinese remainder theorem, we can construct the polynomial $f \bmod \prod_i l_i$ obtained by applying to the Chinese remainder theorem term-wise to the coefficients of each of the $f_{l_i}$'s. Note that since $q$ is a root of all the $f_{l_i}$'s, it follows that $q$ is a root of $f$. 
 
 \section{This Section has SubSections}
 
