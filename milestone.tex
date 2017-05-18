@@ -75,9 +75,15 @@ One approach to factoring $p^2 q$ is to attempt to construct a polynomial that m
 f_{l_i}(x) = \prod_{a \in T_{l_i}} (x - a) \bmod l_i.
 \]
 
-Then, using the Chinese remainder theorem, we can construct the polynomial $f \bmod \prod_i l_i$ obtained by applying to the Chinese remainder theorem term-wise to the coefficients of each of the $f_{l_i}$'s. Note that since $q$ is a root of all the $f_{l_i}$'s, it follows that $q$ is a root of $f$. 
+Then, using the Chinese remainder theorem, we can construct the polynomial $f \bmod \prod_i l_i$ obtained by applying to the Chinese remainder theorem term-wise to the coefficients of each of the $f_{l_i}$'s. Note that since $q$ is a root of all the $f_{l_i}$'s, it follows that $q$ is a root of $f$. However, $q$ is not a sufficiently small root of $f$ for Coppersmith's algorithm to determine it. In particular, if $f$ is a polynomial of degree $d$ modulo $L$, Coppersmith's algorithm will only find roots that are $< L^{1/d}$. However, if the $l_i$'s are the first $n$ primes, then $\prod_i l_i \approx e^n$. Since we must have $\prod_i l_i > q$, it follows that we need $n > \ln q$. Additionally, we note that the degree of $f$ will be the size of the largest table, which will be $\frac{l_n - 1}{2}$. Since the size of the largest prime is $\approx n \ln n$, it follows that $L^{1/d}$ will be approximately
+\[
+e^{2n/n\ln n} = e^{2/\ln n} = e^{O(1/\log \log q)}  << q,
+\]  
+and so Coppersmith's method will not be able to determine $q$.
 
-\section{This Section has SubSections}
+An immediate observation is that if the degree of $f$ was smaller (was $n^{1 - \varepsilon}$ instead of $\approx n \ln n$), then Coppersmith's method would be sufficient to determine $q$. In this case, we would have that $L^{1/d}$ is $\approx e^{n^{\varepsilon}} > q$ for $n = O(\log^{1/\varepsilon} q)$. However, there does not seem to be any way to reduce the degree using these tables alone. In particular, since the size of the tables is $O(n \ln n)$, $f$ must necessarily have degree $O(n \ln n)$ in order to capture all the possible values of $q$. If some extra information about $q$ unrelated to the quadratic residuosity of $q$ modulo primes could be gathered, this could potentially be leveraged to reduce the size of the tables. 
+
+\section{Future Work}
 
 
 
