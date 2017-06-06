@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=latex 2015.5.24)  6 JUN 2017 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=latex 2015.5.24)  6 JUN 2017 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -908,26 +908,22 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 86.
 
-
-Underfull \vbox (badness 1888) has occurred while \output is active []
-
-
 (./project.bbl) [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
  (./project.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 108.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 108.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 110.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: 028D5E50797F2668D9AC211250295A09;336.
+(rerunfilecheck)             Checksum: 034A7DBF3F25CAD494D844411BCABA87;421.
  ) 
 Here is how much of TeX's memory you used:
- 18247 strings out of 493090
- 337512 string characters out of 6134868
+ 18246 strings out of 493090
+ 337507 string characters out of 6134868
  412322 words of memory out of 5000000
- 21382 multiletter control sequences out of 15000+600000
+ 21381 multiletter control sequences out of 15000+600000
  36928 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,9n,54p,1512b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on project.dvi (2 pages, 24000 bytes).
+Output written on project.dvi (2 pages, 23304 bytes).

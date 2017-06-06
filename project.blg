@@ -3,47 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: project.aux
 The style file: acm.bst
 Database file #1: project.bib
-Warning--can't use both author and editor fields in dan
 Warning--empty booktitle in Okamoto
-You've used 5 entries,
+You've used 3 entries,
             2253 wiz_defined-function locations,
-            563 strings with 4798 characters,
-and the built_in function-call counts, 1808 in all, are:
-= -- 179
-> -- 60
+            549 strings with 4429 characters,
+and the built_in function-call counts, 1023 in all, are:
+= -- 97
+> -- 36
 < -- 0
-+ -- 26
-- -- 20
-* -- 131
-:= -- 277
-add.period$ -- 14
-call.type$ -- 5
-change.case$ -- 24
++ -- 15
+- -- 12
+* -- 74
+:= -- 161
+add.period$ -- 8
+call.type$ -- 3
+change.case$ -- 15
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 78
-empty$ -- 160
-format.name$ -- 20
-if$ -- 392
+cite$ -- 4
+duplicate$ -- 47
+empty$ -- 92
+format.name$ -- 12
+if$ -- 220
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 6
-newline$ -- 27
-num.names$ -- 10
-pop$ -- 31
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 17
+num.names$ -- 6
+pop$ -- 20
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 12
 quote$ -- 0
-skip$ -- 52
+skip$ -- 29
 stack$ -- 0
-substring$ -- 139
-swap$ -- 26
+substring$ -- 65
+swap$ -- 13
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
-warning$ -- 2
-while$ -- 19
-width$ -- 6
-write$ -- 53
-(There were 2 warnings)
+type$ -- 12
+warning$ -- 1
+while$ -- 10
+width$ -- 4
+write$ -- 31
+(There was 1 warning)

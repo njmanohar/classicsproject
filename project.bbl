@@ -1,10 +1,5 @@
 \begin{thebibliography}{1}
 
-\bibitem{dan}
-{\sc Boneh, D., Durfee, G., and Howgrave-Graham, N.}
-\newblock {\em Factoring N = p r q for Large r}.
-\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 1999, pp.~326--337.
-
 \bibitem{Coppersmith}
 {\sc Coppersmith, D.}
 \newblock Finding a small root of a univariate modular equation.
@@ -16,11 +11,6 @@
 {\sc Okamoto, T., Uchiyama, S., and Fujisaki, E.}
 \newblock Epoc: Efficient probabilistic public-key encryption (submission to
   p1363a).
-
-\bibitem{pomerance}
-{\sc Pomerance, C.}
-\newblock A tale of two sieves.
-\newblock {\em Notices Amer. Math. Soc 43\/} (1996), 1473--1485.
 
 \bibitem{Gathen}
 {\sc von~zur Gathen, J., and Panario, D.}

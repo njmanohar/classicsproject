@@ -1,6 +1,7 @@
 \BOOKMARK [1][-]{section.1}{Introduction and Problem Overview}{}% 1
 \BOOKMARK [1][-]{section.2}{One Approach}{}% 2
 \BOOKMARK [1][-]{section.3}{Factoring N = prq}{}% 3
-\BOOKMARK [1][-]{section.4}{Beyond Coppersmith's method}{}% 4
-\BOOKMARK [1][-]{section.5}{Turning the problem around}{}% 5
-\BOOKMARK [1][-]{section.6}{Future Work}{}% 6
+\BOOKMARK [1][-]{section.4}{General Purpose Factoring Algorithms}{}% 4
+\BOOKMARK [1][-]{section.5}{Beyond Coppersmith's method}{}% 5
+\BOOKMARK [1][-]{section.6}{Turning the Problem Around}{}% 6
+\BOOKMARK [1][-]{section.7}{Conclusions/Open Problems}{}% 7
