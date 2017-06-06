@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: project.aux
+The style file: acm.bst
+Database file #1: project.bib
+Warning--can't use both author and editor fields in dan
+Warning--empty booktitle in Okamoto
+You've used 5 entries,
+            2253 wiz_defined-function locations,
+            563 strings with 4798 characters,
+and the built_in function-call counts, 1808 in all, are:
+= -- 179
+> -- 60
+< -- 0
++ -- 26
+- -- 20
+* -- 131
+:= -- 277
+add.period$ -- 14
+call.type$ -- 5
+change.case$ -- 24
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 78
+empty$ -- 160
+format.name$ -- 20
+if$ -- 392
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 6
+newline$ -- 27
+num.names$ -- 10
+pop$ -- 31
+preamble$ -- 1
+purify$ -- 20
+quote$ -- 0
+skip$ -- 52
+stack$ -- 0
+substring$ -- 139
+swap$ -- 26
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 18
+warning$ -- 2
+while$ -- 19
+width$ -- 6
+write$ -- 53
+(There were 2 warnings)

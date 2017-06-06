@@ -85,6 +85,8 @@ An immediate observation is that if the degree of $f$ was smaller (was $n^{1 - \
 
 \section{Factoring $N = p^rq$}
 
+Recently\cite{dan}\cite{pomerance}
+
 \section{Beyond Coppersmith's method} 
 Given that Coppersmith's method will not work for finding sufficiently many roots (i.e., more than constant size roots) of a polynomial of degree O(log(N)) over $N$, we need to search for other methods. Define $K = p_1 \cdots p_k$ such that $q < K$. Define $N = p_1 \cdots p_n$ for $n > k$. As before, let $F$ be the unique polynomial mod N that is equivalent to $f_i = (x^{(p_i - 1)/2} - b_i)$ over $\mathbb{Z}_{p_i}$ where $b_i =  \left(\frac{q}{p_i}\right)$. The first question is whether we can even hope that there will be a small (i.e. polynomial) number of roots of $F$ that are less than $K$, otherwise there would probably be no hope of recovering $q$. When $n = k$ it is easy to see that there are an exponential number of roots in $[0, K)$ because any k-wise combination of the roots of $f_i$ for each $i$ corresponds to a unique integer in $\mathbb{Z}_k$ that is a root of $F$. This total number of roots is precisely $\Pi_{i= 1}^k (p_i - 1)/2 \approx K/2^k$. Although the number of solutions for $q$ remaining is still exponential, the information about $q$ that we got from examining the roots of $f_1,...,f_k$ reduced the solution space by a factor $2^k$. Heuristically, we would hope that each polynomial $f_i$ for $i > k$ would continue to reduce the solution space by a factor 2 so that we would only need $n = O(k) = O(log(q))$ polynomials to reduce the number of solutions to a constant. However, proving this seems to be tricky and we are working on a proof. 
 

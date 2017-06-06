@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{Coppersmith}
+{\sc Coppersmith, D.}
+\newblock Finding a small root of a univariate modular equation.
+\newblock In {\em Proceedings of the 15th Annual International Conference on
+  Theory and Application of Cryptographic Techniques\/} (Berlin, Heidelberg,
+  1996), EUROCRYPT'96, Springer-Verlag, pp.~155--165.
+
+\bibitem{Okamoto}
+{\sc Okamoto, T., Uchiyama, S., and Fujisaki, E.}
+\newblock Epoc: Efficient probabilistic public-key encryption (submission to
+  p1363a).
+
+\bibitem{Gathen}
+{\sc von~zur Gathen, J., and Panario, D.}
+\newblock Factoring polynomials over finite fields: A survey.
+\newblock {\em Journal of Symbolic Computation 31}, 1 (2001), 3 -- 17.
+
+\end{thebibliography}
