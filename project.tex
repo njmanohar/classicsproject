@@ -55,7 +55,9 @@ We discuss the problem of factoring $N = p^2 q$ and survey some approaches. We t
 
 \section{Introduction and Problem Overview}
 
-The problem of factoring $p^2 q$ is of considerable interest in cryptography. Various encryption schemes, such as the EPOC cryptosystem~\cite{Okamoto}, are based on the assumption that this problem is hard to solve. A natural question to ask is whether factoring $p^2q$ is as hard as factoring a general RSA modulus $N = pq$. In particular, is there a way to exploit the fact that $N$ is of the form $p^2q$ that could lead to an improvement in factoring moduli of this form? One observation is that given $N = p^2q$, it is easy to learn if $q$ is a quadratic residue modulo some prime $\ell$. To see this, we first note that the Jacobi symbol $\left(\frac{\ell}{N}\right)$ is computable in polynomial time via repeated application of the law of quadratic reciprocity. Additionally, since the Jacobi symbol is a multiplicative function, it follows that
+The problem of factoring $p^2 q$ is of considerable interest in cryptography. Various encryption schemes, such as the EPOC cryptosystem~\cite{Okamoto} and the ESIGN digital signature scheme~\cite{esign}, are based on the assumption that this problem is hard to solve. Furthermore, Takagai~\cite{Takagai} showed that RSA decryption can be made much faster when moduli of the form $N = p^r q$ or, in particular, $N = p^2 q$ are used. A natural question to ask is whether factoring $p^2q$ is as hard as factoring a general RSA modulus $N = pq$. In particular, is there a way to exploit the fact that $N$ is of the form $p^2q$ that could lead to an improvement in factoring moduli of this form? 
+
+One observation is that given $N = p^2q$, it is easy to learn if $q$ is a quadratic residue modulo some prime $\ell$. To see this, we first note that the Jacobi symbol $\left(\frac{\ell}{N}\right)$ is computable in polynomial time via repeated application of the law of quadratic reciprocity. Additionally, since the Jacobi symbol is a multiplicative function, it follows that
 \[
 \left(\frac{\ell}{N}\right) = \left(\frac{\ell}{p^2q}\right) = \left(\frac{\ell}{p^2}\right) \left(\frac{\ell}{q}\right) = \left(\frac{\ell}{p}\right)^2 \left(\frac{\ell}{q}\right).
 \]
@@ -70,11 +72,27 @@ By the law of quadratic reciprocity, it follows that
 \]
 and so $\left(\frac{q}{\ell}\right)$ can be computed in polynomial time.
 
-Using this information, we can construct tables $T_{\ell_i}$ for primes $\ell_i$ that list the possible values of $q \bmod \ell_i$. Since there are $\frac{\ell_i - 1}{2}$ quadratic residues and nonresidues modulo $\ell_i$, the size of $T_{\ell_i}$ will be $\frac{\ell_i - 1}{2}$. Equivalently, let $b_i =  \left(\frac{q}{\ell_i}\right)$ then the table $T_{\ell_i}$ contains the roots of the polynomial $(x^{(\ell_i - 1)/2} - b_i)$ over $\mathbb{Z}_{\ell_i}$. The question of factoring $p^2 q$ has now been reduced to the question of whether $q$ can be efficiently reconstructed given information about whether or not $q$ is a quadratic residue modulo primes for a fixed sequence of primes. 
+One approach to factoring $p^2 q$ is to attempt to leverage the information about $q$'s quadratic residuosity to recover $q$. In Section {\color{red} INSERT SECTION NUMBER}, we present a $\tilde{O}(q^{1/3})$ time factoring algorithm for $p^2 q$ that follows this approach. Furthermore, we consider the problem of factoring $p^2 q$ given some bits of advice and show that our algorithm can factor $p^2 q$ in polynomial time given {\color{red} INSERT NUMBER} advice bits. 
+
+In Section~\ref{prq}, we survey a specialized factoring algorithm for numbers of the form $p^r q$ due to Boneh, Durfee, and Howgrave-Graham~\cite{dan}. They show that when given a good enough approximation $P$ to $p$, it is possible to recover $p$ in polynomial time by constructing a polynomial $f$ with small coefficients that has $x = p - P$ as a root. If the coefficients of the polynomial are sufficiently small and the root $x$ is also sufficiently small, they show that there will be no wrap-around and $x$ will be a root of $f$ over the integers, which can be recovered in polynomial time. The required approximation $P$ to $p$ is found via brute force and this process determines the running time of the algorithm since the rest of it runs in polynomial time. If the required approximation $P$ to $p$ can be found in polynomial time, then this algorithm runs in polynomial time, which~\cite{dan} shows to be the case when $r = \Omega(\log p)$. For factoring $p^2 q$, this algorithm has a running time of $\tilde{O}(p^{1/3})$, which matches the time complexity of our factoring algorithm (assuming the factors $p$ and $q$ are of roughly the same size). Additionally, this algorithm requires $\frac{\log p}{3} + O(1)$ advice bits to factor $p^2 q$ in polynomial time~\cite{dan}. 
+
+These two algorithms provide interesting approaches to factoring $p^2 q$ and could potentially be improved to reduce their running times. However, these two algorithms are currently eclipsed asymptotically by general purpose factoring algorithms such as the Elliptic Curve Method~\cite{Lenstra} and the Number Field Sieve~\cite{pomerance}.  
+
+Since factoring $p^2 q$ appears to be quite difficult, we also approach this problem in the other direction where we assume it is hard to solve and try to construct cryptographic primitives from this assumption. In Section {\color{red} INSERT SECTION NUMBER}, we show our attempt at constructing key agreement from this assumption and discuss the difficulties of making such a construction work. 
+
+We conclude by discussing the variety of open problems related to factoring $p^2 q$ and describe directions for future work.
+
+
+
 
 \section{One Approach}
 
-One approach to factoring $p^2 q$ is to attempt to construct a polynomial that must have $q$ as a small root and then determine this root using Coppersmith's method~\cite{Coppersmith}. Observe that for each prime $\ell_i$ for which we have a corresponding table $T_{\ell_i}$, we can construct the polynomial
+
+One approach to factoring $p^2 q$ is to attempt to use the information about $q$'s quadratic residuosity modulo many primes $\ell_i$ to construct a polynomial that must have $q$ as a small root and then determine this root using Coppersmith's method~\cite{Coppersmith}. 
+
+As discussed previously, it is possible given $N = p^2 q$ and some prime $\ell$ to compute $\left(\frac{q}{\ell}\right)$ in polynomial time. Using this information, we can construct tables $T_{\ell_i}$ for primes $\ell_i$ that list the possible values of $q \bmod \ell_i$. Since there are $\frac{\ell_i - 1}{2}$ quadratic residues and nonresidues modulo $\ell_i$, the size of $T_{\ell_i}$ will be $\frac{\ell_i - 1}{2}$. Equivalently, let $b_i =  \left(\frac{q}{\ell_i}\right)$. Then, the table $T_{\ell_i}$ contains the roots of the polynomial $(x^{(\ell_i - 1)/2} - b_i)$ over $\mathbb{Z}_{\ell_i}$. The question of factoring $p^2 q$ has now been reduced to the question of whether $q$ can be efficiently reconstructed given information about whether or not $q$ is a quadratic residue modulo primes for a fixed sequence of primes. 
+
+Observe that for each prime $\ell_i$ for which we have a corresponding table $T_{\ell_i}$, we can construct the polynomial
 \[
 f_{\ell_i}(x) = \prod_{a \in T_{\ell_i}} (x - a) \bmod \ell_i.
 \]
@@ -88,8 +106,9 @@ and so Coppersmith's method will not be able to determine $q$.
 An immediate observation is that if the degree of $f$ was smaller (was $n^{1 - \varepsilon}$ instead of $\approx n \ln n$), then Coppersmith's method would be sufficient to determine $q$. In this case, we would have that $L^{1/d}$ is $\approx e^{n^{\varepsilon}} > q$ for $n = O(\log^{1/\varepsilon} q)$. However, there does not seem to be any way to reduce the degree using these tables alone. In particular, since the size of the tables is $O(n \ln n)$, $f$ must necessarily have degree $O(n \ln n)$ in order to capture all the possible values of $q$. If some extra information about $q$ unrelated to the quadratic residuosity of $q$ modulo primes could be gathered, this could potentially be leveraged to reduce the size of the tables. 
 
 \section{Factoring $N = p^rq$}
+\label{prq}
 
-Due to prevalence of moduli of the form $N = p^r q$ in cryptography, researchers have studied the difficulty of factoring moduli of this special form. In~\cite{dan}, Boneh, Durfee, and Howgrave-Graham present a method for factoring integers of the form $N = p^r q$ that utilizes techniques introduced by Coppersmith in~\cite{Coppersmith1997}. However, this method only runs in polynomial time (in $\log N$) when $r = O(\log p)$. When $r = 2$, this method runs in time $\tilde{O}(p^{1/3})$, which is slower than the Elliptic Curve Method~\cite{Lenstra} or the Number Field Sieve~\cite{pomerance}. When $r = O(\sqrt{\log p})$, this lattice-based factoring method begins to be asymptotically faster than the Elliptic Curve Method and the Number Field Sieve. This method is particularly interesting because it runs in polynomial time if it is provided with a good enough approximation to $p$. For the case of $N = p^2 q$, this lattice-based method will factor $N$ in polynomial time given the most significant third of the bits of $p$. Since this method has a similar asymptotic running time to our factoring algorithm, we present a sketch of the algorithm here for completeness.
+Due to prevalence of moduli of the form $N = p^r q$ in cryptography, researchers have studied the difficulty of factoring moduli of this special form. In~\cite{dan}, Boneh, Durfee, and Howgrave-Graham present a method for factoring integers of the form $N = p^r q$ that utilizes techniques introduced by Coppersmith in~\cite{Coppersmith1997}. However, this method only runs in polynomial time (in $\log N$) when $r = \Omega(\log p)$. When $r = 2$, this method runs in time $\tilde{O}(p^{1/3})$, which is slower than the Elliptic Curve Method~\cite{Lenstra} or the Number Field Sieve~\cite{pomerance}. When $r \approx \sqrt{\log p}$, this lattice-based factoring method begins to be asymptotically faster than the Elliptic Curve Method and the Number Field Sieve. This method is particularly interesting because it runs in polynomial time if it is provided with a good enough approximation to $p$. For the case of $N = p^2 q$, this lattice-based method will factor $N$ in polynomial time given the most significant third of the bits of $p$. Since this method has a similar asymptotic running time to our factoring algorithm, we present a sketch of the algorithm here for completeness.
 
 For simplicity, we will only describe the algorithm for the case $r = 2$, but the process described below easily extends to larger $r$. Additionally, we will try to follow the notation used in~\cite{dan}. At a high level, the algorithm is based on the following idea. Suppose that some rough approximation $P$ to $p$ is known. In particular, suppose $|P - p| < X$ for some $X$ to be determined. Then, if one considers the polynomial
 \[
@@ -155,7 +174,6 @@ Another idea we are working on is to turn this problem around and assume it is h
 
 \section{Conclusions and Open Problems}
 
-Since this problem generally reduces to factoring polynomials modulo composites, if time permits, we may survey some of the known factoring algorithms in this space. One such problem is that of factoring polynomials over finite fields, for which polynomial time algorithms exist. Von Zur Gathen and Panario wrote a nice survey~\cite{Gathen} summarizing the main methods for factoring univariate polynomials over finite fields. 
 
 
 
