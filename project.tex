@@ -115,7 +115,31 @@ The LLL algorithm guarantees that when given a full rank lattice $\mathcal{L}$ o
 \[
 ||\textbf{v}|| \leq 2^{d/2} \det(L)^{1/d}
 \]
-where $L$ is the matrix whose column vectors form a basis of $\mathcal{L}$. 
+where $L$ is the matrix whose column vectors form a basis of $\mathcal{L}$. The lattice $\mathcal{L}$ is instantiated to be the lattice whose basis vectors are the coefficients vectors of the polynomials $g_{i,k}(xX)$ for $i = 0,1$ and $k = 0, \hdots, m-1$ and the coefficient vectors of the polynomials $g_{j,m}(xX)$ for $j = 0, \hdots, d - 2m - 1$. $\mathcal{L}$ is a $d$-dimensional lattice and the matrix $L$ corresponding to this lattice is triangular, so its determinant can be easily computed as the product of the diagonal entries. After some calculation,~\cite{dan} determines that
+\[
+\det(L) < N^{m(m+1)}X^{d^2/2}
+\] 
+and therefore, the LLL algorithm will output a vector $\textbf{v}$ satisfying
+\[
+||\textbf{v}|| \leq 2^{d/2} N^{m(m+1)/d}X^{d/2}.
+\]
+Viewing $\textbf{v}$ as the coefficients vector of some polynomial $h(xX)$, we see that the algorithm can determine $p$ provided
+\[
+||h(xX)|| < \frac{p^{2m}}{\sqrt{d}}.
+\]
+It remains to determine optimal values for the parameters $X, m, d$. It can be shown that the optimal value for $m$ is
+\[
+m = \lfloor \frac{d}{3} - \frac{1}{2} \rfloor.
+\]
+The algorithm will then succeed provided that 
+\[
+X < p^{2/3 - 4/d}.
+\]
+Since the LLL algorithm runs in time polynomial in the dimension $d$ of the lattice~\cite{LLL}, we can choose $d = O(\log p)$ and still have one iteration of the factoring algorithm run in polynomial time. 
+
+All that remains is to determine $P$. This can be done by iterating through all possible values of the most significant bits of $p$, where the number of bits we need to guess is determined by the precision of the approximation required. For factoring $N = p^2 q$, we need to correctly guess one third of the bits of $p$ (plus an additional constant number of bits which can be brute forced at each step without increasing the asymptotic running time). There are $p^{1/3}$ possibilities for the most significant third of the bits of $p$, and so it follows that this algorithm factors $p^2 q$ in time $\tilde{O}(p^{1/3})$.
+
+A interesting property of this algorithm is that it can be easily made to run in polynomial time given a sufficient number of advice bits. In particular, given a close enough approximation $P$ to $p$, the algorithm can determine $p$ in polynomial time. For factoring $p^2 q$, the most significant third of the bits of $p$ or $\frac{\log p}{3}$ advice bits are needed for the algorithm to run in polynomial time.
 
 \section{General Purpose Factoring Algorithms}
 
