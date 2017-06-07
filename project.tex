@@ -85,6 +85,10 @@ An immediate observation is that if the degree of $f$ was smaller (was $n^{1 - \
 
 \section{Factoring $N = p^rq$}
 
+Due to prevalence of moduli of the form $N = p^r q$ in cryptography, researchers have studied the difficulty of factoring moduli of this special form. In~\cite{dan}, Boneh, Durfee, and Howgrave-Graham present a method for factoring integers of the form $N = p^r q$ that utilizes techniques introduced by Coppersmith in~\cite{Coppersmith1997}. However, this method only runs in polynomial time (in $\log N$) when $r = O(\log p)$. When $r = 2$, this method runs in time $\tilde{O}(p^{1/3})$, which is slower than the Elliptic Curve Method~\cite{Lenstra} or the Number Field Sieve~\cite{pomerance}. When $r = O(\sqrt{\log p})$, this lattice-based factoring method begins to be asymptotically faster than the Elliptic Curve Method and the Number Field Sieve. This method is particularly interesting because it runs in polynomial time if it is provided with a good enough approximation to $p$. For the case of $N = p^2 q$, this lattice-based method will factor $N$ in polynomial time given the most significant third of the bits of $p$. Since this method has a similar asymptotic running time to our factoring algorithm, we present a sketch of the algorithm here for completeness.
+
+For simplicity, we will only describe the algorithm for the case $r = 2$. Additionally, we will try to follow the notation used in~\cite{dan}.  
+
 \section{General Purpose Factoring Algorithms}
 
 
