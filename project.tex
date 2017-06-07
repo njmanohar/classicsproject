@@ -203,8 +203,11 @@ An adversary that has a large root $\alpha^* > B^2$ wouldn't be able to recover 
 
 \section{Conclusions and Open Problems}
 
+We described our attempts at factoring $p^2 q$ and building cryptographic primitives from the hardness of factoring $p^2 q$. However, this problem proved to be extremely difficult, and as a result, numerous open problems remain. The most obvious unresolved question is can $p^2 q$ be factored classically in polynomial time? However, showing this is extremely ambitious and it would be interesting to even construct a specialized factoring algorithm for $N = p^2 q$ that performs better asymptotically than ECM or the Number Field Sieve. We attempted to use the information extracted from $N$ about the quadratic residuosity of $q$ modulo primes $\ell_i$ to speed up the running time of the Quadratic Sieve or the Number Field Sieve, but were unable to utilize this additional information in a meaningful manner. However, it seems like this information should be able to be leveraged in some way.
 
+Additionally, it would be interesting to study the number of advice bits needed to factor $p^2 q$ in polynomial time and see if it is possible to do better than the $\frac{\log p}{3} + O(1)$ bits needed in~\cite{dan}. Another direction would be to try to say something about how additional constraints reduce the possible number of solutions for $q$ in a given range. Alternatively, one could try to prove something about the distribution of the roots of a polynomial $f$ that has been derived from a modulus $N = p^2 q$ in the manner described previously. 
 
+On the other hand, one could try to build cryptographic primitives assuming the hardness of factoring $p^2 q$. In particular, is it possible to build key exchange from the candidate problem described above, namely that it is hard to find a small root of a polynomial over a smooth modulus. We can reduce this problem to the question of building key exchange between two parties, each of which knows some small root to a public polynomial. 
 
 {\footnotesize \bibliographystyle{acm}
 \bibliography{project}}
