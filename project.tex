@@ -19,6 +19,8 @@
 \usepackage{tikz}
 \usepackage{hyperref}
 
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+
 \begin{document}
 
 %don't want date printed
@@ -87,7 +89,13 @@ An immediate observation is that if the degree of $f$ was smaller (was $n^{1 - \
 
 Due to prevalence of moduli of the form $N = p^r q$ in cryptography, researchers have studied the difficulty of factoring moduli of this special form. In~\cite{dan}, Boneh, Durfee, and Howgrave-Graham present a method for factoring integers of the form $N = p^r q$ that utilizes techniques introduced by Coppersmith in~\cite{Coppersmith1997}. However, this method only runs in polynomial time (in $\log N$) when $r = O(\log p)$. When $r = 2$, this method runs in time $\tilde{O}(p^{1/3})$, which is slower than the Elliptic Curve Method~\cite{Lenstra} or the Number Field Sieve~\cite{pomerance}. When $r = O(\sqrt{\log p})$, this lattice-based factoring method begins to be asymptotically faster than the Elliptic Curve Method and the Number Field Sieve. This method is particularly interesting because it runs in polynomial time if it is provided with a good enough approximation to $p$. For the case of $N = p^2 q$, this lattice-based method will factor $N$ in polynomial time given the most significant third of the bits of $p$. Since this method has a similar asymptotic running time to our factoring algorithm, we present a sketch of the algorithm here for completeness.
 
-For simplicity, we will only describe the algorithm for the case $r = 2$. Additionally, we will try to follow the notation used in~\cite{dan}.  
+For simplicity, we will only describe the algorithm for the case $r = 2$. Additionally, we will try to follow the notation used in~\cite{dan}. At a high level, the algorithm is based on the following idea. Suppose that some rough approximation $P$ to $p$ is known. In particular, suppose $|P - p| < X$ for some $X$ to be determined. Then, if one considers the polynomial
+\[
+f(x) = (P + x)^2,
+\]  
+it follows that the point $x_0 = p - P$ is a root of $f(x) \bmod p^2$. Furthermore, since $P$ was a good approximation to $p$, it follows that $|x_0| < X$. So, the problem has been reduced to finding a small root of $f(x) \bmod p^2$. It is important to point out here that the modulus in question, $p^2$ is unknown. However, knowing the modulus becomes unnecessary given the following fact due to Howgrave-Graham: Suppose that $f(x)$ is a degree $d$ polynomial over the integers. Suppose further that $f(x_0) \equiv 0 \bmod p^r$ for some small root $|x_0| < X$ and that $||f(xX)|| < p^r/\sqrt{d}$, where $||f||$ is defined as the $l_2$ norm of its coefficients vector. Then, $f(x_0) = 0$ in $\Z$. 
+
+The above essentially states that if we can construct a polynomial with sufficiently small coefficients, then $x_0$ will be a root over the integers, which can be found in polynomial time. We note that knowing the modulus $p^2$ or $p^r$ is unnecessary. All that we need to be able to do is to construct a polynomial that has small coefficients when evaluated on $xX$ while maintaining the fact that the polynomial has a root at $x_0$ modulo $p^r$. 
 
 \section{General Purpose Factoring Algorithms}
 
