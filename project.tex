@@ -51,6 +51,8 @@
 %Your Abstract Text Goes Here.  Just a few facts.
 %Whet our appetites.
 
+We discuss the problem of factoring $N = p^2 q$ and survey some approaches. We then present a specialized factoring algorithm that runs in time $\tilde{O}(q^{1/3})$, which matches the runtime of the factoring algorithm for integers of the form $N = p^r q$ presented in~\cite{dan}. Furthermore, we determine the number of advise bits needed by our algorithm to factor $p^2 q$ in polynomial time and compare this with the number of bits needed by~\cite{dan}. Finally, we discuss the possibility of constructing cryptographic primitives from the assumption that $p^2 q$ is hard to factor. We present our attempt at constructing key agreement and discuss the difficulties of building this primitive from the hardness of factoring $p^2 q$.
+
 \section{Introduction and Problem Overview}
 
 The problem of factoring $p^2 q$ is of considerable interest in cryptography. Various encryption schemes, such as the EPOC cryptosystem~\cite{Okamoto}, are based on the assumption that this problem is hard to solve. A natural question to ask is whether factoring $p^2q$ is as hard as factoring a general RSA modulus $N = pq$. In particular, is there a way to exploit the fact that $N$ is of the form $p^2q$ that could lead to an improvement in factoring moduli of this form? One observation is that given $N = p^2q$, it is easy to learn if $q$ is a quadratic residue modulo some prime $\ell$. To see this, we first note that the Jacobi symbol $\left(\frac{\ell}{N}\right)$ is computable in polynomial time via repeated application of the law of quadratic reciprocity. Additionally, since the Jacobi symbol is a multiplicative function, it follows that
@@ -151,7 +153,7 @@ Given that Coppersmith's method will not work for finding sufficiently many root
 \section{Turning the Problem Around} 
 Another idea we are working on is to turn this problem around and assume it is hard to factor $p^2q$, and thus that it is hard to find small roots of polynomials of poly degree over a super smooth modulus N and to build some useful crypto primitives like key exchange from this assumption. This problem may also be quantum hard. 
 
-\section{Conclusions/Open Problems}
+\section{Conclusions and Open Problems}
 
 Since this problem generally reduces to factoring polynomials modulo composites, if time permits, we may survey some of the known factoring algorithms in this space. One such problem is that of factoring polynomials over finite fields, for which polynomial time algorithms exist. Von Zur Gathen and Panario wrote a nice survey~\cite{Gathen} summarizing the main methods for factoring univariate polynomials over finite fields. 
 
