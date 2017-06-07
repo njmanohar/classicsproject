@@ -99,6 +99,24 @@ The above essentially states that if we can construct a polynomial with sufficie
 
 To accomplish this,~\cite{dan} sets $s = 2m$ for some parameter $m$ to be determined and takes a series of polynomials $g_{i,k}(x)$ that are constructed so that $x_0 = p - P$ is a root modulo $p^{2m}$. They then construct a lattice $\mathcal{L}$ whose basis is the set of coefficients vectors of the $g_{i,k}(xX)$'s. Using the LLL algorithm~\cite{LLL}, it is then possible to find a short vector $\bf{v} \in \mathcal{L}$. This short vector $\bf{v}$ can be thought of as the coefficients vector of a new polynomial $h(xX)$. However, since $\bf{v} \in \mathcal{L}$, $h(x)$ can be expressed as a linear combination of the $g_{i,k}$'s and since $g_{i,k}(x_0) \equiv 0 \bmod p^{2m}$ for all $g_{i,k}$, it follows that $h(x_0) \equiv 0 \bmod p^{2m}$. Therefore as stated previously (provided that $||h(xX)||$ is sufficiently small), $x_0$ is a root of $h$ over the integers and can therefore be found in polynomial time. Since $x_0 = p-P$ and $P$ is public, it is then possible to recover $p$ and factor $N = p^2 q$. 
 
+More specifically, the polynomials $g_{i,k}$ are defined as
+\[
+g_{i,k}(x) = N^{m-k}x^i f^k(x)
+\]
+where $f^k(x) = (P+x)^{2k}$. We note immediately that
+\begin{align*}
+g_{i,k}(x_0) &= (p^2q)^{m-k} x^i (P + p - P)^{2k} \\
+&= p^{2m}q^{m-k}x^i \\
+&\equiv 0 \bmod p^{2m}
+\end{align*}
+and so $x_0$ is a root of $g_{i,k} \bmod p^{2m}$ for all $i,k$. 
+
+The LLL algorithm guarantees that on input a full rank lattice $\mathcal{L}$ of dimension $d$, it will output a lattice vector $\bf{v}$ such that
+\[
+||\textbf{v}|| \leq 2^{d/2} \det(L)^{1/d}
+\]
+where $L$ is the matrix whose column vectors form a basis of $\mathcal{L}$. 
+
 \section{General Purpose Factoring Algorithms}
 
 
